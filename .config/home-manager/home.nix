@@ -5,6 +5,8 @@
   # manage.
   home.username = "vheac";
   home.homeDirectory = "/home/vheac";
+  
+
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -18,6 +20,33 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.libgccjit
+    pkgs.libgcc
+    pkgs.gcc
+    pkgs.ripgrep
+    pkgs.unzip
+    pkgs.nodejs_21
+    pkgs.python3
+    pkgs.lua
+
+    pkgs.git
+    pkgs.wget
+    
+
+    pkgs.swww
+    pkgs.dunst
+    
+
+
+    pkgs.neofetch
+    pkgs.htop
+    
+    pkgs.rofi-wayland
+    pkgs.kitty
+    pkgs.neovim
+    pkgs.kate
+    pkgs.firefox
+    pkgs.thunderbird
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -26,7 +55,7 @@
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -67,12 +96,17 @@
   #  /etc/profiles/per-user/vheac/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+     EDITOR = "neovim";
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
+
+  programs.neovim.plugins = [
+    pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+  ];
+
+
   programs.git= {
     enable= true;
     userName= "KubaVencel";
