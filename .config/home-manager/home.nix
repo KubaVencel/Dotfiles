@@ -5,7 +5,21 @@
   # manage.
   home.username = "vheac";
   home.homeDirectory = "/home/vheac";
+ 
   
+  # Automatic Garbage Collection
+  nix.gc = {
+    automatic = true;
+    frequency = "weekly";
+    options = "--delete-older-than 7d";
+    };
+
+    nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (_: true);
+    };
+  };
 
 
   # This value determines the Home Manager release that your configuration is
@@ -32,10 +46,11 @@
     pkgs.git
     pkgs.wget
     
-
+    pkgs.waybar
+  #  pkgs.networkmanagerapplet
     pkgs.swww
     pkgs.dunst
-    
+    pkgs.libnotify
 
 
     pkgs.neofetch
@@ -47,6 +62,8 @@
     pkgs.kate
     pkgs.firefox
     pkgs.thunderbird
+    pkgs.spotify
+    pkgs.discord
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -102,9 +119,6 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.neovim.plugins = [
-    pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-  ];
 
 
   programs.git= {
