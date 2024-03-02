@@ -11,7 +11,7 @@
   nix.gc = {
     automatic = true;
     frequency = "weekly";
-    options = "--delete-older-than 7d";
+    options = "--delete-older-than 2d";
     };
 
     nixpkgs = {
@@ -20,7 +20,56 @@
       allowUnfreePredicate = (_: true);
     };
   };
+  
+#cursorTheme theme
 
+   home.pointerCursor = {
+     package = pkgs.catppuccin-cursors.mochaLight;
+
+      name = "Catppuccin-Mocha-Light-Cursors";
+
+     size = 17;
+   };
+
+# gtk theme
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Catppuccin-Mocha-Compact-Mauve-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "mauve" ];
+        size = "compact";
+        tweaks = [ "rimless" "black" ];
+        variant = "mocha";
+      };
+    };
+
+  # cursorTheme
+    cursorTheme = {
+      package = pkgs.catppuccin-cursors.mochaLight;
+      name = "Catppuccin-Mocha-Light-Cursors";
+    };
+
+  # icons 
+    iconTheme = {
+      package =  pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
+  };
+
+  # qt theme
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+    style = {
+        name = "Catppuccin Mocha Mauve Modern";
+        package = pkgs.catppuccin-kde.override {
+        flavour = [ "mocha" ];
+        accents = [ "mauve" ];
+        winDecStyles = [ "modern" ];
+        };
+      };
+    };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -42,6 +91,13 @@
     pkgs.nodejs_21
     pkgs.python3
     pkgs.lua
+  
+
+    pkgs.pcmanfm
+   #pkgs.lxappearance-gtk2
+   #pkgs.qt5c
+   #pkgs.libsForQt5.qt5ct
+
 
     pkgs.git
     pkgs.wget
